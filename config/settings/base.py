@@ -21,6 +21,15 @@ def get_list_env(name, default=''):
     value = os.environ.get(name, default)
     return [item.strip() for item in value.split(',') if item.strip()]
 
+def get_int_env(name, default):
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    try:
+        return int(value.strip())
+    except (ValueError, AttributeError):
+        return default
+
 def append_unique(items, value):
     if value and value not in items:
         items.append(value)
@@ -107,8 +116,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # -- App-level Settings --
-FINE_PER_DAY = int(os.environ.get('FINE_PER_DAY', 2))
-DEFAULT_LOAN_DAYS = int(os.environ.get('DEFAULT_LOAN_DAYS', 14))
+FINE_PER_DAY = get_int_env('FINE_PER_DAY', 2)
+DEFAULT_LOAN_DAYS = get_int_env('DEFAULT_LOAN_DAYS', 14)
 ENABLE_PUBLIC_REGISTRATION = get_bool_env('ENABLE_PUBLIC_REGISTRATION', default=DEBUG)
 ENABLE_SEED_TOOLS = get_bool_env('ENABLE_SEED_TOOLS', default=DEBUG)
 ENABLE_DEMO_DATA = get_bool_env('ENABLE_DEMO_DATA', default=DEBUG)
