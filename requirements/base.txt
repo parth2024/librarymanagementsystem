@@ -1,4 +1,5 @@
 Django>=4.2,<5.0
+python-dotenv
 Pillow
 mysqlclient
 psycopg2-binary
