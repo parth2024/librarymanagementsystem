@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from library.utils import send_overdue_alerts
+from apps.library.utils import send_overdue_alerts
 
 class Command(BaseCommand):
     help = 'Sends automated email alerts to members with overdue books'

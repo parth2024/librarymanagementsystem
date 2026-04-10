@@ -1,4 +1,4 @@
-from library.models import Notification
+from .models import Notification
 
 
 def unread_notifications(request):

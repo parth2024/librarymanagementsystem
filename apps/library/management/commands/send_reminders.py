@@ -8,7 +8,7 @@ Usage:  python manage.py send_reminders
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from datetime import timedelta
-from library.models import BookIssue, Notification
+from apps.library.models import BookIssue, Notification
 
 
 class Command(BaseCommand):

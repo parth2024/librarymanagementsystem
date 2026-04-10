@@ -9,7 +9,7 @@ Schedule with cron for daily execution:
 
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from library.models import BookIssue
+from apps.library.models import BookIssue
 
 
 class Command(BaseCommand):
