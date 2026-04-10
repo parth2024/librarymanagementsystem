@@ -14,7 +14,15 @@ if not ALLOWED_HOSTS:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # CSRF & Session Security
-CSRF_TRUSTED_ORIGINS = get_list_env('CSRF_TRUSTED_ORIGINS', 'https://librarymanagementsystem-0cty.onrender.com')
+# Filter CSRF_TRUSTED_ORIGINS to only valid entries (must start with http:// or https://)
+_raw_csrf_origins = get_list_env('CSRF_TRUSTED_ORIGINS', '')
+CSRF_TRUSTED_ORIGINS = [o for o in _raw_csrf_origins if o.startswith('http://') or o.startswith('https://')]
+if not CSRF_TRUSTED_ORIGINS:
+    # Build a safe default from ALLOWED_HOSTS
+    CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in ALLOWED_HOSTS if h not in ('localhost', '127.0.0.1')]
+    if not CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
