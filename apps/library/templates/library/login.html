@@ -161,9 +161,14 @@
                 {{ form.username }}
             </div>
             <div class="form-group">
-                <label class="form-label">Password</label>
-                {{ form.password }}
-                <i class="bi bi-eye password-toggle" id="togglePassword"></i>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label mb-0">Password</label>
+                    <a href="#" class="text-gold" style="font-size: 12px; text-decoration: none; opacity: 0.8;" onclick="alert('Password reset is currently disabled. Please contact the Librarian.')">Forgot?</a>
+                </div>
+                <div class="position-relative">
+                    {{ form.password }}
+                    <i class="bi bi-eye password-toggle" id="togglePassword"></i>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary w-100 mt-3">
                 <i class="bi bi-unlock-fill"></i> Sign In to Archives
@@ -171,9 +176,13 @@
         </form>
 
         <div class="login-footer text-center">
-            {% if registration_enabled %}<p class="text-muted text-sm mb-4">
-                Don't have access? <a href="{% url 'register' %}" class="text-gold" style="text-decoration:none;font-weight:600;">Create Account</a>
-            </p>{% endif %}
+            <p class="text-muted text-sm mb-4">
+                {% if registration_enabled %}
+                    Don't have access? <a href="{% url 'register' %}" class="text-gold" style="text-decoration:none;font-weight:600;">Create Account</a>
+                {% else %}
+                    <span style="opacity:0.6;">Public registration is invitation only.</span>
+                {% endif %}
+            </p>
             <div class="text-dim text-sm" style="font-size:11px; opacity:0.6;">
                 Smt Kumudben Darbar College · Project 2023–2026
             </div>

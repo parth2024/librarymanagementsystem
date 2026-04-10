@@ -12,3 +12,8 @@ ALLOWED_HOSTS = ['*']
 
 # Use console email backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Enable features for development
+ENABLE_PUBLIC_REGISTRATION = True
+ENABLE_SEED_TOOLS = True
+ENABLE_DEMO_DATA = True
