@@ -10,7 +10,7 @@ def healthcheck(_request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('health/', healthcheck, name='healthcheck'),
-    path('', include('library.urls')),
+    path('', include('apps.library.urls')), # Updated to apps.library
 ]
 
 if settings.DEBUG:

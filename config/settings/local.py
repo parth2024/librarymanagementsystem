@@ -2,11 +2,13 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-only-key-do-not-use-in-production')
 
-# Use console backend for emails in local dev
+ALLOWED_HOSTS = ['*']
+
+# Optional: Add local-only apps like django-debug-toolbar
+# INSTALLED_APPS += ['debug_toolbar']
+# MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+
+# Use console email backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-ENABLE_PUBLIC_REGISTRATION = True
-ENABLE_SEED_TOOLS = True
-ENABLE_DEMO_DATA = True

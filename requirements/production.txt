@@ -1,4 +1,4 @@
 -r base.txt
 waitress
-whitenoise[brotli]
-gunicorn
+whitenoise
+dj-database-url
